@@ -1,0 +1,73 @@
+unit Unit1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, StdCtrls, Vcl.Imaging.jpeg;
+
+type
+  TForm1 = class(TForm)
+    Edit2: TEdit;
+    Edit3: TEdit;
+    Button1: TButton;
+    Timer1: TTimer;
+    Label4: TLabel;
+    Button2: TButton;
+    Edit1: TEdit;
+    Label1: TLabel;
+    Image1: TImage;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label5: TLabel;
+    procedure Button1Click(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+   min, sec: integer;
+
+implementation
+
+{$R *.dfm}  
+
+procedure TForm1.Button2Click(Sender: TObject);
+var
+price:real;
+Tprice:real;
+begin
+Timer1.Enabled:=False;
+ price:=StrToFloat(Edit1.Text);
+   Tprice:= min*price;
+    Label3.Caption:= FloatToStr(Tprice);
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+min:=0;
+sec:=0;
+ Timer1.Enabled:=True;
+end;
+
+
+procedure TForm1.Timer1Timer(Sender: TObject);
+begin
+sec:=sec+1;
+if sec>=60 then begin
+  sec:=0;
+  min:=min+1
+end;
+
+
+
+Edit2.Text:=IntToStr(min);
+Edit3.Text:=IntToStr(sec);
+end;
+
+end.
